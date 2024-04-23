@@ -1,5 +1,10 @@
 [run]
 source = creator
 
+[report]
+format = text
+show_missing = True
+skip_empty = True
+
 [xml]
 output = coverage.xml
