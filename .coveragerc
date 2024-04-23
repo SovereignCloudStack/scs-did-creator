@@ -5,6 +5,7 @@ source = creator
 format = text
 show_missing = True
 skip_empty = True
+fail_under = 90
 
 [xml]
 output = coverage.xml
