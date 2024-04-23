@@ -1,0 +1,5 @@
+[run]
+source = creator
+
+[xml]
+output = coverage.xml
