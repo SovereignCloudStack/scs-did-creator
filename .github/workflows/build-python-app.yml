@@ -36,6 +36,7 @@ jobs:
       - name: Test with pytest
         run: |
           python -m pytest --cov --cov-config=.coveragerc
+          ls
         shell: bash
 
       - name: Code Coverage Report
