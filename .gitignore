@@ -1,4 +1,5 @@
 .idea
+!.coveragerc
 .coverage
 coverage.xml
 node_modules
