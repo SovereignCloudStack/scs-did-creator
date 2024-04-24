@@ -52,6 +52,10 @@ jobs:
           output: both
           thresholds: '90 95'
 
+      - name: add treshold to coverage.md
+        run: |
+          echo "_Minimum allowed line rate is `90%`_" >> code-coverage-results.md
+
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@v2
         if: github.event_name == 'pull_request'
