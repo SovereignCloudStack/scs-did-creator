@@ -1,10 +1,10 @@
 [run]
 #source = creator
-omit = tests
 
 [report]
 show_missing = True
 skip_empty = True
+omit = tests/*
 
 [xml]
 output = coverage.xml
