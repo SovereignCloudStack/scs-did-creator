@@ -7,4 +7,3 @@ skip_empty = True
 
 [xml]
 output = coverage.xml
-package_depth = 0
