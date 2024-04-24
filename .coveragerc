@@ -3,8 +3,8 @@
 
 [report]
 show_missing = True
-skip_empty = True
-omit = tests/*
+#skip_empty = True
+#omit = tests/*
 
 [xml]
 output = coverage.xml
