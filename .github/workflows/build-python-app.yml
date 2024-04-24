@@ -63,7 +63,7 @@ jobs:
         run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
 
 
-      - name: Show files:
+      - name: Show files
         run: |
           cat coverage.xml
           cat code-coverage-results.md
