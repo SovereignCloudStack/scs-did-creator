@@ -1,13 +1,10 @@
 # scs-did-creator
-Tools for managing creation of did:web for SCS conformant clouds.
 
+Tools for managing creation of did:web for SCS conformant clouds.
 
 ## User Guide
 
-
-
 ## Developers Guide
-
 
 ### Running unit tests
 
