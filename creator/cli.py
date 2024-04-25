@@ -9,12 +9,14 @@ import json
 
 import click
 import yaml
-from jwcrypto.jwt import JWK
 from cryptography.hazmat.primitives import serialization
-from did_gen import DidGenerator
 from cryptography.hazmat.primitives.serialization import load_pem_public_key
+from jwcrypto.jwt import JWK
+
+from creator.did_gen import DidGenerator
 
 DEFAULT_CONFIG_FILE = "/etc/scs-did-gen/config.yaml"
+
 
 @click.command()
 @click.option("--config", help="Configuration file for DID generator")
@@ -22,16 +24,16 @@ DEFAULT_CONFIG_FILE = "/etc/scs-did-gen/config.yaml"
 def did_creator(output_file, config):
     """Generates DID document for given DID and private keys."""
     did_crea = DidGenerator("templates")
-
     if not config:
         config = DEFAULT_CONFIG_FILE
 
     with open(config, "r") as config_file:
         config_dict = yaml.safe_load(config_file)
         keys = []
-        for key in config_dict['pub_key']:
+        for key in config_dict['verification_methods']:
             with open(key, "rb") as key_file:
-                jwk = JWK.from_pem(load_pem_public_key(key_file.read()).public_bytes(
+                pub_key_bytes = (key_file.read())
+                jwk = JWK.from_pem(load_pem_public_key(pub_key_bytes).public_bytes(
                     encoding=serialization.Encoding.PEM,
                     format=serialization.PublicFormat.SubjectPublicKeyInfo))
                 keys.append(jwk)

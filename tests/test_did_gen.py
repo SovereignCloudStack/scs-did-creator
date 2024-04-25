@@ -1,17 +1,15 @@
 import unittest
 
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import serialization
-from creator.did_gen import DidGenerator
+from cryptography.hazmat.primitives.asymmetric import ec, rsa
 from jwcrypto.jwt import JWK
+
+from creator.did_gen import DidGenerator
 
 
 class DidGenTestCase(unittest.TestCase):
 
     def setUp(self):
-        import os
-        print(os.getcwd())
         self.did_gen = DidGenerator("creator/templates")
 
     def test_did_gen(self):
@@ -32,7 +30,6 @@ class DidGenTestCase(unittest.TestCase):
         # run generator
         did_doc = self.did_gen.generate_did_document(issuer="did:web:example.com",
                                                      verification_methods={public_rsa_key, public_ec_key})
-
 
         # check results
         self.assertEqual(["https://www.w3.org/ns/did/v1", "https://w3id.org/security/suites/jws-2020/v1"],

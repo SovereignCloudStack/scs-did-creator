@@ -1,14 +1,13 @@
+"""Script to generate DID documents for did:web.
+
+(c) Anja Strunk <anja.strunk@cloudandheat.com>, 4/2024
+SPDX-License-Identifier: EPL-2.0
+"""
+
 import json
-import os
-from datetime import datetime, timezone
-from typing import Optional, List, Set
+from typing import List
 
-from cryptography import x509
-from cryptography.hazmat.primitives import serialization
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from jwcrypto import jwk
-
-# from utils import sign_doc, canonicalize, sha256_string
 
 
 class DidGenerator:
@@ -20,6 +19,14 @@ class DidGenerator:
         )
 
     def generate_did_document(self, issuer: str, verification_methods: List) -> dict:
+        """ Return a DID document for given issuer and with given  verification methods as dict.
+        @param issuer: did:web of issuer
+        @type issuer: str
+        @param verification_methods: List of public keys in JWK format added as verification method to DID document.
+        @type issuer: List
+        @return: DID document as dict
+        @rtype dict
+        """
         vfy_methods = []
         keys = []
         key_number = 0
