@@ -8,7 +8,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 import creator.cli as cli
 
 CONFIG_DATA = {'issuer': ' did:web:example.com',
-               'verification_methods': 'pub-key.pem'
+               'verification-methods': 'pub-key.pem'
                }
 
 

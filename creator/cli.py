@@ -30,7 +30,7 @@ def did_creator(output_file, config):
     with open(config, "r") as config_file:
         config_dict = yaml.safe_load(config_file)
         keys = []
-        for key in config_dict['verification_methods']:
+        for key in config_dict['verification-methods']:
             with open(key, "rb") as key_file:
                 pub_key_bytes = (key_file.read())
                 jwk = JWK.from_pem(load_pem_public_key(pub_key_bytes).public_bytes(
