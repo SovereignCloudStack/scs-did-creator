@@ -10,7 +10,7 @@ Install dependencies
 
 `pip install -r requirements.txt`
 
-DID creator generates a DID document. Mandatory content for DID document such as issuer and verification methods are taken from `config.yaml`. 
+DID creator generates a DID document. Mandatory content for DID document such as issuer and verification methods are taken from `config.yaml`.
 
 ```yaml
 issuer: "did:web:example.com"
@@ -24,7 +24,7 @@ Attribute `verification-methods` refers to a list of public key files, used as v
 
 Currently, all verification methods are set as `assertionMethod`, e.i. can be used to verify [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) issued by `issuer`.
 
-scs-did-creator is looking vor `config.yaml` in folder `/etc/scs-did-creator/`. You can specify our own configuration file using parameter `--config` 
+scs-did-creator is looking vor `config.yaml` in folder `/etc/scs-did-creator/`. You can specify our own configuration file using parameter `--config`
 
 Run scs-did-creator
 
@@ -34,10 +34,9 @@ Run scs-did-creator with own configuration file
 
 `pyhton3 -m creator/cli.py --config=my-config.yaml`
 
-scs-did-creator will print generated DID document on screen. There is also an option to write it to an output file instead of stdout. 
+scs-did-creator will print generated DID document on screen. There is also an option to write it to an output file instead of stdout.
 
 `pyhton3 -m creator/cli.py --output-file=my-did-document.json`
-
 
 ## Developers Guide
 
@@ -56,7 +55,6 @@ Then, tests can be run with:
 To run tests with code coverage, use
 
 `python -m pytest --cov`
-
 
 ### Updating the dependency pins
 
