@@ -28,7 +28,9 @@ scs-did-creator is looking vor `config.yaml` in folder `/etc/scs-did-creator/`. 
 
 Run scs-did-creator
 
-`pyhton3 -m creator/cli.py`
+```shell
+python3 -m creator.cli
+```
 
 Run scs-did-creator with own configuration file
 
