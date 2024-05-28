@@ -10,7 +10,7 @@ from creator.did_gen import DidGenerator
 class DidGenTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.did_gen = DidGenerator("creator/templates")
+        self.did_gen = DidGenerator("../creator/templates")
 
     def test_did_gen(self):
         # create rsa key pair
@@ -47,12 +47,14 @@ class DidGenTestCase(unittest.TestCase):
         self.assertEqual("did:web:example.com", vm_rsa["controller"])
         self.assertEqual("RSA", vm_rsa["publicKeyJwk"]["kty"])
         self.assertEqual("Aw", vm_rsa["publicKeyJwk"]["e"])
+        self.assertEqual(public_rsa_key['n'], vm_rsa["publicKeyJwk"]["n"])
 
         self.assertEqual("JsonWebKey2020", vm_ec["type"])
         self.assertEqual("did:web:example.com", vm_ec["controller"])
         self.assertEqual("EC", vm_ec['publicKeyJwk']["kty"])
         self.assertEqual("P-256", vm_ec['publicKeyJwk']["crv"])
-
+        self.assertEqual(public_ec_key['x'], vm_ec['publicKeyJwk']["x"])
+        self.assertEqual(public_ec_key['y'], vm_ec['publicKeyJwk']["y"])
 
 if __name__ == '__main__':
     unittest.main()

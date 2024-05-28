@@ -14,9 +14,9 @@
    ],
    "assertionMethod": [
         {% for i in keys %}
-            "{{ issuer }}{{loop.index}}#{{ i }}"
-                {%if loop.index < (keys|length) %}
-                          ,
+         "{{issuer}}#{{ i }}"
+         {%if loop.index < (keys|length) %}
+              ,
             {% endif %}
         {% endfor %}
    ]

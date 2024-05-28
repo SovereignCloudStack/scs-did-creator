@@ -3,6 +3,7 @@
       "type": "JsonWebKey2020",
       "controller": "{{ issuer }}",
       "publicKeyJwk": {
+        "kid": "{{ jwk.kid }}",
         "kty": "EC",
         "crv": "{{ jwk.crv }}",
         "x": "{{ jwk.x }}",
