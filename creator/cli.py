@@ -30,11 +30,8 @@ def did_creator(output_file, config):
         config_dict = yaml.safe_load(config_file)
         keys = []
         for key in config_dict['verification-methods']:
-            with open(key, "rb") as key_file:
-                pub_key_bytes = (key_file.read())
-                jwk = JWK.from_pem(load_pem_public_key(pub_key_bytes).public_bytes(
-                    encoding=serialization.Encoding.PEM,
-                    format=serialization.PublicFormat.SubjectPublicKeyInfo))
+            with open(key, mode="rb") as key_file:
+                jwk = JWK.from_pem(key_file.read())
                 keys.append(jwk)
 
         did_content = did_crea.generate_did_document(issuer=config_dict['issuer'], verification_methods=keys)
