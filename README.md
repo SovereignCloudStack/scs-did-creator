@@ -40,7 +40,9 @@ python3 -m creator.cli --config=my-config.yaml
 
 scs-did-creator will print generated DID document on screen. There is also an option to write it to an output file instead of stdout.
 
-`pyhton3 -m creator/cli.py --output-file=my-did-document.json`
+```shell
+python3 -m creator.cli --output-file=my-did-document.json
+```
 
 ## Developers Guide
 
