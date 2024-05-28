@@ -8,7 +8,9 @@ We recommend to run scs-did-creator within a [python virtual environment](https:
 
 Install dependencies
 
-`pip install -r requirements.txt`
+```shell
+pip install -r requirements.txt
+```
 
 DID creator generates a DID document. Mandatory content for DID document such as issuer and verification methods are taken from `config.yaml`.
 
