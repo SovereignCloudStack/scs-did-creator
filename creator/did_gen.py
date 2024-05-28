@@ -41,7 +41,7 @@ class DidGenerator:
             else:
                 raise ValueError(jwk_content['kty'] + " no supported key type.")
 
-            vfy_methods.append((jwk_tmpl.render(issuer=issuer, number=key_number, jwk=jwk_content)))
+            vfy_methods.append(jwk_tmpl.render(issuer=issuer, number=key_number, jwk=jwk_content))
             key_number += 1
 
         did_doc_tmpl = self.jinja_env.get_template("did.j2")
