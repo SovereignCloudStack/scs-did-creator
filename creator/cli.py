@@ -37,6 +37,8 @@ def did_creator(output_file, config):
                     encoding=serialization.Encoding.PEM,
                     format=serialization.PublicFormat.SubjectPublicKeyInfo))
                 keys.append(jwk)
+                # TODO: Remove Njina templates, as they are error prone, use json.dumps instead
+                print(json.dumps(jwk,indent=4))
 
         did_content = did_crea.generate_did_document(issuer=config_dict['issuer'], verification_methods=keys)
         if output_file:
