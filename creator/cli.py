@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 """Script to generate DID documents fort did:web method.
 
