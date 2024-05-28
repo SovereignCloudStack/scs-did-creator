@@ -34,14 +34,14 @@ class DidGenerator:
             jwk_content = jw_key.export(as_dict=True)
             if jwk_content['kty'] == "RSA":
                 jwk_tmpl = self.jinja_env.get_template("rsa_jwk.j2")
-                keys.append("JWK2020-RSA-key#" + str(key_number))
+                keys.append(f"JWK2020-RSA-key#{key_number}")
             elif jwk_content['kty'] == "EC":
                 jwk_tmpl = self.jinja_env.get_template("ec_jwk.j2")
-                keys.append("JWK2020-EC-key#" + str(key_number))
+                keys.append(f"JWK2020-EC-key#{key_number}")
             else:
                 raise ValueError(jwk_content['kty'] + " no supported key type.")
 
-            vfy_methods.append((jwk_tmpl.render(issuer=issuer, number=key_number, jwk=jwk_content)))
+            vfy_methods.append(jwk_tmpl.render(issuer=issuer, number=key_number, jwk=jwk_content))
             key_number += 1
 
         did_doc_tmpl = self.jinja_env.get_template("did.j2")

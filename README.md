@@ -39,26 +39,23 @@ Currently, all verification methods are set as `assertionMethod`,  i.e. used to 
 ### Run scs-did-creator
 
 
-Run did creator with configuration file, implicitly. 
+Run scs-did-creator with configuration file, implicitly. 
 
 ```shell
-pyhton3 -m creator/cli
+python3 -m creator.cli
 ```
-scs-did-creator looks for configuration in the following order 
-
-1. `<current folder>/config.yaml`
-2. `/etc/scs-did-gen/config.yaml`
- 
 
 Run scs-did-creator with own configuration file
 
-```
-pyhton3 -m creator/cli --config=my-config.yaml
+```shell
+python3 -m creator.cli --config=my-config.yaml
 ```
 
 scs-did-creator will print generated DID document on screen. There is also an option to write it to an output file instead of stdout.
 
-`pyhton3 -m creator/cli.py --output-file=my-did-document.json`
+```shell
+python3 -m creator.cli --output-file=my-did-document.json
+```
 
 
 
