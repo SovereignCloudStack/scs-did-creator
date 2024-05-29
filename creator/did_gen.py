@@ -4,46 +4,80 @@
 SPDX-License-Identifier: EPL-2.0
 """
 
-import json
 from typing import List
 
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from dataclasses import dataclass
+from cryptography.hazmat.primitives import serialization
+from jwcrypto.jwt import JWK
+from cryptography import x509
+import requests
+
+
+@dataclass
+class VerificationMethod():
+    path: str
+    x509: bool = False
 
 
 class DidGenerator:
+    CONTEXT = [
+        "https://www.w3.org/ns/did/v1",
+        "https://w3id.org/security/suites/jws-2020/v1"]
 
-    def __init__(self, jinja_templates: str):
-        self.jinja_env = Environment(
-            loader=FileSystemLoader(jinja_templates),
-            autoescape=select_autoescape()
-        )
-
-    def generate_did_document(self, issuer: str, verification_methods: List) -> dict:
+    def generate_did_document(self, issuer: str, verification_methods: List[VerificationMethod]) -> dict:
         """ Return a DID document for given issuer and with given  verification methods as dict.
-        @param issuer: did:web of issuer
-        @type issuer: str
-        @param verification_methods: List of public keys in JWK format added as verification method to DID document.
-        @type issuer: List
-        @return: DID document as dict
-        @rtype dict
-        """
-        vfy_methods = []
-        keys = []
-        key_number = 0
-        for jw_key in verification_methods:
-            jwk_content = jw_key.export(as_dict=True)
-            if jwk_content['kty'] == "RSA":
-                jwk_tmpl = self.jinja_env.get_template("rsa_jwk.j2")
-                keys.append(f"JWK2020-RSA-key#{key_number}")
-            elif jwk_content['kty'] == "EC":
-                jwk_tmpl = self.jinja_env.get_template("ec_jwk.j2")
-                keys.append(f"JWK2020-EC-key#{key_number}")
-            else:
-                raise ValueError(jwk_content['kty'] + " no supported key type.")
 
-            vfy_methods.append(jwk_tmpl.render(issuer=issuer, number=key_number, jwk=jwk_content))
+        :param issuer: did:web of issuer
+        :type issuer: str
+        :param verification_methods: List of verification method to be added to DID document.
+        :type verification_methods: List of VerificationMethods
+        :@return: DID document as dict
+        :rtype dict
+        """
+
+        did_doc = dict()
+        did_doc['@context'] = self.CONTEXT
+        did_doc['id'] = issuer
+        did_doc['verificationMethod'] = list()
+        did_doc['assertionMethod'] = list()
+
+        key_number = 0
+        for m in verification_methods:
+            if m.x509:
+                # parse x509 certificate
+                response = requests.get(m.path)
+                if response.ok:
+                    key_name = issuer + "#X509-JWK2020-" + str(key_number)
+                    cert = x509.load_pem_x509_certificates(response.text.encode('utf-8'))[0]
+                    key = JWK.from_pem(cert.public_key().public_bytes(
+                        encoding=serialization.Encoding.PEM,
+                        format=serialization.PublicFormat.SubjectPublicKeyInfo))
+                else:
+                    raise requests.HTTPError(
+                        'Could not retrieve x509 certificate from ' + m.path + ". (HTTP status code: " + response.status_code)
+            else:
+                # parse public key
+                with open(m.path, mode="rb") as file:
+                    key = JWK.from_pem(file.read())
+                    if key.kty == "RSA":
+                        key_name = issuer + "#RSA-JWK2020-key-" + str(key_number)
+                    elif key.kty == "EC":
+                        key_name = issuer + "#EC-JWK2020-key-" + str(key_number)
+                    else:
+                        raise ValueError("Unsupported JSON Web Key type: " + key.kty + " found.")
+
+            method = dict()
+            method["@context"] = "https://w3c-ccg.github.io/lds-jws2020/contexts/v1/"
+            method['id'] = key_name
+            method['type'] = "JsonWebKey2020"
+            method['controller'] = issuer
+            method['publicKeyJwk'] = key.export(as_dict=True)
+
+            if m.x509:
+                method['publicKeyJwk']['x5u'] = m.path
+            did_doc['verificationMethod'].append(method)
+            did_doc['assertionMethod'].append(key_name)
+
             key_number += 1
 
-        did_doc_tmpl = self.jinja_env.get_template("did.j2")
-        did_doc = did_doc_tmpl.render(issuer=issuer, verification_method=vfy_methods, keys=keys)
-        return json.loads(did_doc)
+        return did_doc
