@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 ### Pre-requisites
 
-Bases on [DID specification](https://www.w3.org/TR/did-core/#dfn-did-documents): "...DID documents contain information associated with a DID. They typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject..." 
+Bases on [DID specification](https://www.w3.org/TR/did-core/#dfn-did-documents): "...DID documents contain information associated with a DID. They typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject..."
 
 In context of Gaia-X, DID document contains at least one verification method to verify authorship of Gaia-X Credentials. scs-did-creator supports [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) and [EC keys](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography) as verification methods, only. If not already exist, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html)
 
@@ -32,8 +32,8 @@ verification-methods:
 ```
 
 Attribute `issuer` defines issuer of DID document, which is the DID itself. scs-did-creator does support did:web only.
-Attribute `verification-methods` refers to a list of public key files, set as verification method in generated DID document. 
-Currently, all verification methods are set as `assertionMethod`,  i.e. used to verify [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) issued by `issuer`.
+Attribute `verification-methods` refers to a list of public key files, set as verification method in generated DID document.
+Currently, all verification methods are set as `assertionMethod`, i.e. used to verify [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) issued by `issuer`.
 
 ### Run scs-did-creator
 
