@@ -7,7 +7,6 @@ SPDX-License-Identifier: EPL-2.0
 import base64
 from dataclasses import dataclass
 from typing import List
-from urllib.parse import urlparse
 
 import requests
 from cryptography import x509

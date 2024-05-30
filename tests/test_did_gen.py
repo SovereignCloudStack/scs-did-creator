@@ -1,7 +1,7 @@
 import base64
 import datetime
 import unittest
-from unittest.mock import call, mock_open, patch
+from unittest.mock import mock_open, patch
 
 from cryptography import x509
 from cryptography.hazmat.primitives import hashes, serialization
