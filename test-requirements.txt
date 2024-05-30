@@ -20,6 +20,8 @@ pytest==8.1.1
     #   pytest-cov
 pytest-cov==5.0.0
     # via -r test-requirements.in
+pyyaml==6.0.1
+    # via -r test-requirements.in
 tomli==2.0.1
     # via
     #   coverage
