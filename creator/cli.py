@@ -7,11 +7,8 @@ import json
 
 import click
 import yaml
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.serialization import load_pem_public_key
-from jwcrypto.jwt import JWK
-from cryptography import x509
-from creator.did_gen import DidGenerator, VerificationMethod
+
+from creator import did_gen
 
 DEFAULT_CONFIG_FILE = "/etc/scs-did-gen/config.yaml"
 
@@ -31,13 +28,13 @@ def did_creator(output_file, config):
         # read out public keys
         if "keys" in config_dict['verification-methods']:
             for key in config_dict['verification-methods']['keys']:
-                veri_meths.append(VerificationMethod(path=key))
+                veri_meths.append(did_gen.VerificationMethod(path=key))
         # read out x509 certs
         if "x509s" in config_dict['verification-methods']:
             for cert in config_dict['verification-methods']['x509s']:
-                veri_meths.append(VerificationMethod(path=cert, x509=True))
+                veri_meths.append(did_gen.VerificationMethod(path=cert, x509=True))
 
-        did_content = DidGenerator().generate_did_document(issuer=config_dict['issuer'], verification_methods=veri_meths)
+        did_content = did_gen.generate_did_document(issuer=config_dict['issuer'], verification_methods=veri_meths)
 
         if output_file:
             with open(output_file, "w") as did_doc:

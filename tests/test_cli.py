@@ -25,7 +25,7 @@ class CliTestCase(unittest.TestCase):
             format=serialization.PublicFormat.SubjectPublicKeyInfo
         )
 
-    @patch("creator.did_gen.DidGenerator.generate_did_document")
+    @patch("creator.did_gen.generate_did_document")
     @patch("yaml.safe_load")
     def test_cli(self, mock_yaml_load, mock_did_gen):
         # mock method calls
