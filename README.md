@@ -37,7 +37,7 @@ Currently, all verification methods are set as `assertionMethod`, i.e. used to v
 
 ### Run scs-did-creator
 
-Run scs-did-creator with configuration file, implicitly. 
+Run scs-did-creator with configuration file, implicitly.
 
 ```shell
 python3 -m creator.cli
