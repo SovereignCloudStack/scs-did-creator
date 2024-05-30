@@ -1,22 +1,18 @@
-import unittest
-
-from cryptography.hazmat.primitives import serialization, hashes
-from cryptography.hazmat.primitives.serialization import Encoding
-from cryptography.hazmat.primitives.asymmetric import ec, rsa
-from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey, RSAPublicKey
-
-from cryptography import x509
-from jwcrypto.jwt import JWK
-from cryptography.x509.oid import NameOID
-from creator import did_gen
 import base64
-
-from unittest.mock import mock_open, patch, call
-from cryptography import x509
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.x509.oid import NameOID
 import datetime
+import unittest
+from unittest.mock import call, mock_open, patch
+
+from cryptography import x509
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import ec, rsa
+from cryptography.hazmat.primitives.asymmetric.rsa import (RSAPrivateKey,
+                                                           RSAPublicKey)
+from cryptography.hazmat.primitives.serialization import Encoding
+from cryptography.x509.oid import NameOID
+from jwcrypto.jwt import JWK
+
+from creator import did_gen
 
 
 class DidGenTestCase(unittest.TestCase):

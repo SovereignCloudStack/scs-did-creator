@@ -2,11 +2,10 @@
 
 Tools for managing creation of [DID](https://www.w3.org/TR/did-core/) documents for SCS conformant clouds. Currently, scs-did-creator supports [did:web](https://w3c-ccg.github.io/did-method-web/) only.
 
-
-
 ## Quick Start
 
 ### Installation
+
 We recommend to run scs-did-creator within a [python virtual environment](https://docs.python.org/3/library/venv.html)
 
 Install dependencies
@@ -38,7 +37,6 @@ Currently, all verification methods are set as `assertionMethod`,  i.e. used to 
 
 ### Run scs-did-creator
 
-
 Run scs-did-creator with configuration file, implicitly. 
 
 ```shell
@@ -56,8 +54,6 @@ scs-did-creator will print generated DID document on screen. There is also an op
 ```shell
 python3 -m creator.cli --output-file=my-did-document.json
 ```
-
-
 
 ## Developers Guide
 

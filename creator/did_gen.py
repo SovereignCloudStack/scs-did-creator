@@ -4,15 +4,15 @@
 SPDX-License-Identifier: EPL-2.0
 """
 
+import base64
+from dataclasses import dataclass
 from typing import List
 from urllib.parse import urlparse
 
-from dataclasses import dataclass
+import requests
+from cryptography import x509
 from cryptography.hazmat.primitives import serialization
 from jwcrypto.jwt import JWK
-from cryptography import x509
-import requests
-import base64
 
 
 @dataclass

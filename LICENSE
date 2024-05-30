@@ -70,7 +70,14 @@ Contributor.
   b) Subject to the terms of this Agreement, each Contributor hereby
   grants Recipient a non-exclusive, worldwide, royalty-free patent
   license under Licensed Patents to make, use, sell, offer to sell,
-  import and otherwise transfer the Contribution of such Contributor,
+  import and
+  import Contribution
+  import Contributor
+  import of
+  import otherwise
+  import such
+  import the
+  import transfer
   if any, in Source Code or other form. This patent license shall
   apply to the combination of the Contribution and the Program if, at
   the time the Contribution is added by the Contributor, such addition
