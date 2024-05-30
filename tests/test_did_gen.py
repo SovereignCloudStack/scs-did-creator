@@ -142,7 +142,7 @@ class DidGenTestCase(unittest.TestCase):
         cert_1_der = base64.b64encode(self.cert_1.public_bytes(encoding=Encoding.DER)).decode()
         cert_2_der = base64.b64encode(self.cert_2.public_bytes(encoding=Encoding.DER)).decode()
         cert_str = did_gen._get_encode_cert_der_strings_b64([self.cert_2, self.cert_1])
-        self.assertEquals([cert_2_der, cert_1_der], cert_str)
+        self.assertEqual([cert_2_der, cert_1_der], cert_str)
 
     # def test_is_url(self):
     #    self.assertFalse(did_gen._is_url("/foo/bar"))
@@ -160,9 +160,9 @@ class DidGenTestCase(unittest.TestCase):
         m_open = mock_open(read_data=(cert_2_pem + "\n" + cert_1_pem))
         with patch('builtins.open', m_open):
             certs_url = did_gen._get_cert_content("http://foo/bar/")
-            self.assertEquals([self.cert_2, self.cert_1], certs_url)
+            self.assertEqual([self.cert_2, self.cert_1], certs_url)
             certs_path = did_gen._get_cert_content("/foo/bar/")
-            self.assertEquals([self.cert_2, self.cert_1], certs_path)
+            self.assertEqual([self.cert_2, self.cert_1], certs_path)
 
 
 def _create_certificate(issuer: str, subject, priv_key: RSAPrivateKey, pub_key: RSAPublicKey) -> x509.Certificate:

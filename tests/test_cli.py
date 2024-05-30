@@ -8,8 +8,10 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 import creator.cli as cli
 
 CONFIG_DATA = {'issuer': ' did:web:example.com',
-               'verification-methods': 'pub-key.pem'
-               }
+               'verification-methods': {
+                   'keys': ['pub-key1.pem', 'pub-key2.pem'],
+                   "x509s": ['path-to-cert', 'http://www.example.com']
+               }}
 
 
 class CliTestCase(unittest.TestCase):
