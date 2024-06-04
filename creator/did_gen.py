@@ -26,6 +26,7 @@ CONTEXT = [
 VM_CONTEXT = "https://w3c-ccg.github.io/lds-jws2020/contexts/v1/"
 VM_TYPE = "JsonWebKey2020"
 
+
 def generate_did_document(issuer: str, verification_methods: List[VerificationMethod]) -> dict:
     """ Return a DID document for given issuer and with given  verification methods as dict.
 

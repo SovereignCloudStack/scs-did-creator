@@ -50,7 +50,7 @@ python3 -m creator.cli
 Run scs-did-creator with own configuration file
 
 ```shell
-python3 -m creator.cli --config=my-config.yaml
+python3 -m creator.cli --config=my-config.template.yaml
 ```
 
 scs-did-creator will print generated DID document on screen. There is also an option to write it to an output file instead of stdout.

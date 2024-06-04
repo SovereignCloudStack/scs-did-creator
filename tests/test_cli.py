@@ -39,14 +39,14 @@ class CliTestCase(unittest.TestCase):
             # run tests
             runner = CliRunner()
             result = runner.invoke(
-                cli.did_creator, "--config=config.yaml")
+                cli.did_creator, "--config=config.template.yaml")
 
             # check results
             self.assertIsNone(result.exception)
             self.assertEqual(0, result.exit_code)
             self.assertEqual('"foo"\n', result.stdout)
 
-        mock_yaml_load.called_with("config.yaml")
+        mock_yaml_load.called_with("config.template.yaml")
         mock_did_gen.called_once()
 
 
