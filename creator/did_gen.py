@@ -96,7 +96,7 @@ def _get_cert_content(path: str) -> str:
 
 
 def _is_url(path: str) -> bool:
-    return path.startswith("http")
+    return path.startswith("http://") or path.startswith("https://")
 
 
 def _get_encode_cert_der_strings_b64(cert_chain: x509.Certificate) -> List[str]:
