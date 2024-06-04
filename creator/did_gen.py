@@ -67,7 +67,7 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
         method['id'] = key_name
         method['type'] = "JsonWebKey2020"
         method['controller'] = issuer
-        method['publicKeyJwk'] = key.export(as_dict=True)
+        method['publicKeyJwk'] = key.export(as_dict=True, private_key=False)
 
         if m.x509:
             if _is_url(m.path):
