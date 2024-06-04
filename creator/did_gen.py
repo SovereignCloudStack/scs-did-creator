@@ -22,9 +22,9 @@ class VerificationMethod:
 
 CONTEXT = [
     "https://www.w3.org/ns/did/v1",
-    "https://w3id.org/security/suites/jws-2020/v1",
-]
-
+    "https://w3id.org/security/suites/jws-2020/v1"]
+VM_CONTEXT = "https://w3c-ccg.github.io/lds-jws2020/contexts/v1/"
+VM_TYPE = "JsonWebKey2020"
 
 def generate_did_document(issuer: str, verification_methods: List[VerificationMethod]) -> dict:
     """ Return a DID document for given issuer and with given  verification methods as dict.
@@ -63,9 +63,9 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
                     raise ValueError("Unsupported JSON Web Key type: " + key.kty + " found.")
 
         method = dict()
-        method["@context"] = "https://w3c-ccg.github.io/lds-jws2020/contexts/v1/"
+        method["@context"] = VM_CONTEXT
         method['id'] = key_name
-        method['type'] = "JsonWebKey2020"
+        method['type'] = VM_TYPE
         method['controller'] = issuer
         method['publicKeyJwk'] = key.export(as_dict=True, private_key=False)
 
