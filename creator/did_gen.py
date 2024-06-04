@@ -42,8 +42,7 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
     did_doc['verificationMethod'] = list()
     did_doc['assertionMethod'] = list()
 
-    key_number = 0
-    for m in verification_methods:
+    for key_number, m in enumerate(verification_methods):
         if m.x509:
             # parse x509 certificate
             certs = _get_cert_content(m.path)
