@@ -75,7 +75,6 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
                 method['publicKeyJwk']['x5c'] = _get_encode_cert_der_strings_b64(certs)
         did_doc['verificationMethod'].append(method)
         did_doc['assertionMethod'].append(key_name)
-        key_number += 1
     return did_doc
 
 
