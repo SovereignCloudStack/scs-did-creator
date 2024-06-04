@@ -76,6 +76,9 @@ class DidGenTestCase(unittest.TestCase):
         self.assertEqual("RSA", vm_rsa["publicKeyJwk"]["kty"])
         self.assertEqual(public_rsa_key['e'], vm_rsa["publicKeyJwk"]["e"])
         self.assertEqual(public_rsa_key['n'], vm_rsa["publicKeyJwk"]["n"])
+        self.assertFalse("d" in vm_rsa["publicKeyJwk"].keys())
+        self.assertFalse("p" in vm_rsa["publicKeyJwk"].keys())
+        self.assertFalse("q" in vm_rsa["publicKeyJwk"].keys())
 
         self.assertEqual("JsonWebKey2020", vm_ec["type"])
         self.assertEqual("did:web:example.com", vm_ec["controller"])
@@ -83,6 +86,7 @@ class DidGenTestCase(unittest.TestCase):
         self.assertEqual("P-256", vm_ec['publicKeyJwk']["crv"])
         self.assertEqual(public_ec_key['x'], vm_ec['publicKeyJwk']["x"])
         self.assertEqual(public_ec_key['y'], vm_ec['publicKeyJwk']["y"])
+        self.assertFalse("d" in vm_rsa["publicKeyJwk"].keys())
 
     @patch("requests.get")
     @patch("creator.did_gen.open", create=True)
