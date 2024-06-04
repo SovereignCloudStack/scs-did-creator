@@ -15,7 +15,7 @@ from jwcrypto.jwt import JWK
 
 
 @dataclass
-class VerificationMethod():
+class VerificationMethod:
     path: str
     x509: bool = False
 
