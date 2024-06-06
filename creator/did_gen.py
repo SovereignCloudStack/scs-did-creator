@@ -38,11 +38,12 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
     :rtype dict
     """
 
-    did_doc = dict()
-    did_doc['@context'] = CONTEXT
-    did_doc['id'] = issuer
-    did_doc['verificationMethod'] = list()
-    did_doc['assertionMethod'] = list()
+    did_doc = {
+        '@context': CONTEXT,
+        'id': issuer,
+        'verificationMethod': [],
+        'assertionMethod': [],
+    }
 
     for key_number, m in enumerate(verification_methods):
         if m.x509:
