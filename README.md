@@ -36,7 +36,7 @@ verification-methods:
 ```
 
 Attribute `issuer` defines issuer of DID document, which is the DID itself. scs-did-creator does support did:web only.
-Attribute `verification-methods` refers to a list of public key files, set as verification method in generated DID document.
+Attribute `verification-methods` refers to a list of public key files or x509 certificates, set as verification method in generated DID document. A public key file must be set as absolute path, an x509 certificate can be an URL or an absolute file path.
 Currently, all verification methods are set as `assertionMethod`, i.e. used to verify [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) issued by `issuer`.
 
 ### Run scs-did-creator
