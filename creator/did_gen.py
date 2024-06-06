@@ -48,7 +48,7 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
     for key_number, m in enumerate(verification_methods):
         if m.x509:
             # parse x509 certificate
-            certs = _get_cert_content(m.path)
+            certs = _get_x509_content(m.path)
             key_name = issuer + "#JWK2020-X509-" + str(key_number)
             key = JWK.from_pem(certs[0].public_key().public_bytes(
                 encoding=serialization.Encoding.PEM,
@@ -82,7 +82,7 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
     return did_doc
 
 
-def _get_cert_content(path: str) -> str:
+def _get_x509_content(path: str) -> List[x509.Certificate]:
     if _is_url(path):
         # a URL was given and we have to download certificate
         response = requests.get(path)

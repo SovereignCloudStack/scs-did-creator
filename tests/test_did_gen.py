@@ -163,9 +163,9 @@ class DidGenTestCase(unittest.TestCase):
         get_mock.return_value.text = cert_2_pem + "\n" + cert_1_pem
         m_open = mock_open(read_data=(cert_2_pem + "\n" + cert_1_pem))
         with patch('builtins.open', m_open):
-            certs_url = did_gen._get_cert_content("http://foo/bar/")
+            certs_url = did_gen._get_x509_content("http://foo/bar/")
             self.assertEqual([self.cert_2, self.cert_1], certs_url)
-            certs_path = did_gen._get_cert_content("/foo/bar/")
+            certs_path = did_gen._get_x509_content("/foo/bar/")
             self.assertEqual([self.cert_2, self.cert_1], certs_path)
 
 
