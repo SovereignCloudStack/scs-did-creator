@@ -64,12 +64,13 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
                 else:
                     raise ValueError("Unsupported JSON Web Key type: " + key.kty + " found.")
 
-        method = dict()
-        method["@context"] = VM_CONTEXT
-        method['id'] = key_name
-        method['type'] = VM_TYPE
-        method['controller'] = issuer
-        method['publicKeyJwk'] = key.export(as_dict=True, private_key=False)
+        method = {
+            '@context': VM_CONTEXT,
+            'id': key_name,
+            'type': VM_TYPE,
+            'controller': issuer,
+            'publicKeyJwk': key.export(as_dict=True, private_key=False),
+        }
 
         if m.x509:
             if _is_url(m.path):
