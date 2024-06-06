@@ -102,7 +102,7 @@ def _is_url(path: str) -> bool:
 
 
 def _get_encode_cert_der_strings_b64(cert_chain: x509.Certificate) -> List[str]:
-    der_strings = list()
-    for cert in cert_chain:
-        der_strings.append(base64.b64encode(cert.public_bytes(encoding=serialization.Encoding.DER)).decode())
-    return der_strings
+    return [
+        base64.b64encode(cert.public_bytes(encoding=serialization.Encoding.DER)).decode()
+        for cert in cert_chain
+    ]
