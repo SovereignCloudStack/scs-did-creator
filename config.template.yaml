@@ -1,0 +1,6 @@
+issuer: "did:web:example.com"
+verification-methods:
+  keys:
+    - <path-to-key>
+  x509s:
+    - <url-to-cert>

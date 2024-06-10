@@ -1,0 +1,9 @@
+.idea
+.coverage
+coverage.xml
+config.yml
+config.yaml
+node_modules
+venv/
+__pycache__/
+
