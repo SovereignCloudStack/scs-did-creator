@@ -128,6 +128,7 @@ class DidGenTestCase(unittest.TestCase):
         self.assertEqual("P-256", did_doc['verificationMethod'][0]['publicKeyJwk']["crv"])
         self.assertEqual(public_ec_key['x'], did_doc['verificationMethod'][0]['publicKeyJwk']["x"])
         self.assertEqual(public_ec_key['y'], did_doc['verificationMethod'][0]['publicKeyJwk']["y"])
+        self.assertEqual("ES256", did_doc['verificationMethod'][0]["publicKeyJwk"]["alg"])
         self.assertEqual([base64.b64encode(self.cert_2.public_bytes(encoding=Encoding.DER)).decode(),
                          base64.b64encode(self.cert_1.public_bytes(encoding=Encoding.DER)).decode()],
                          did_doc['verificationMethod'][0]["publicKeyJwk"]["x5c"])
@@ -140,6 +141,7 @@ class DidGenTestCase(unittest.TestCase):
         self.assertEqual("RSA", did_doc['verificationMethod'][1]["publicKeyJwk"]["kty"])
         self.assertEqual(public_rsa_key['e'], did_doc['verificationMethod'][1]["publicKeyJwk"]["e"])
         self.assertEqual(public_rsa_key['n'], did_doc['verificationMethod'][1]["publicKeyJwk"]["n"])
+        self.assertEqual("RS256", did_doc['verificationMethod'][1]["publicKeyJwk"]["alg"])
         self.assertEqual("http://foo/bar/ec", did_doc['verificationMethod'][1]['publicKeyJwk']["x5u"])
 
     def test_get_encode_cert_der_strings(self):
