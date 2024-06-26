@@ -30,7 +30,7 @@ class DidGenTestCase(unittest.TestCase):
 
         cls.cert_1 = _create_certificate(issuer='1.example.com', subject='1.example.com', priv_key=cls.priv_key_1,
                                          pub_key=cls.pub_key_1)
-        cls.cert_2 = _create_certificate(issuer='1.example.com', subject='2.example.com', priv_key=cls.priv_key_1,
+        cls.cert_2 = _create_certificate(issuer='1.example.com', subject='2.example.com', priv_key=cls.priv_key_2,
                                          pub_key=cls.pub_key_2)
 
     @patch("creator.did_gen.open", create=True)
