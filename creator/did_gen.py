@@ -25,6 +25,18 @@ CONTEXT = [
     "https://w3id.org/security/suites/jws-2020/v1"]
 VM_CONTEXT = "https://w3c-ccg.github.io/lds-jws2020/contexts/v1/"
 VM_TYPE = "JsonWebKey2020"
+OID2ALG = {
+    "1.2.840.113549.2.9": "HS256",
+    "1.2.840.113549.2.10": "HS384",
+    "1.2.840.113549.2.11": "HS512",
+    "1.2.840.113549.1.1.11": "RS256",
+    "1.2.840.113549.1.1.12": "RS384",
+    "1.2.840.113549.1.1.13": "RS512",
+    "1.2.840.10045.4.3.2": "ES256",
+    "1.2.840.10045.4.3.3": "ES384",
+    "1.2.840.10045.4.3.4": "ES512",
+    "1.2.840.113549.1.1.10": "PS256"
+}
 
 
 def generate_did_document(issuer: str, verification_methods: List[VerificationMethod]) -> dict:
@@ -49,12 +61,14 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
         if m.x509:
             # parse x509 certificate
             certs = _get_x509_content(m.path)
+            cert = certs[0]
             key_name = issuer + "#JWK2020-X509-" + str(key_number)
-            key = JWK.from_pem(certs[0].public_key().public_bytes(
+            key = JWK.from_pem(cert.public_key().public_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PublicFormat.SubjectPublicKeyInfo))
         else:
             # parse public key
+            cert = None
             with open(m.path, mode="rb") as file:
                 key = JWK.from_pem(file.read())
                 if key.kty == "RSA":
@@ -71,6 +85,10 @@ def generate_did_document(issuer: str, verification_methods: List[VerificationMe
             'controller': issuer,
             'publicKeyJwk': key.export(as_dict=True, private_key=False),
         }
+
+        if cert:
+            method['publicKeyJwk'].setdefault(
+                'alg', OID2ALG[cert.signature_algorithm_oid.dotted_string])
 
         if m.x509:
             if _is_url(m.path):

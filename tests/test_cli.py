@@ -46,8 +46,8 @@ class CliTestCase(unittest.TestCase):
             self.assertEqual(0, result.exit_code)
             self.assertEqual('"foo"\n', result.stdout)
 
-        mock_yaml_load.called_with("config.template.yaml")
-        mock_did_gen.called_once()
+        mock_yaml_load.assert_called_with(m_open())
+        mock_did_gen.assert_called_once()
 
 
 if __name__ == '__main__':
