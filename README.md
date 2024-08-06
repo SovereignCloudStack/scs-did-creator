@@ -16,17 +16,17 @@ pip install -r requirements.txt
 
 ### Pre-requisites
 
-Bases on [DID specification](https://www.w3.org/TR/did-core/#dfn-did-documents): "...DID documents contain information associated with a DID. They typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject..." 
+Bases on [DID specification](https://www.w3.org/TR/did-core/#dfn-did-documents): "...DID documents contain information associated with a DID. They typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject..."
 
-There a several types of verification methods, such as [JsonWebKey2020 (JWK)](https://w3c-ccg.github.io/lds-jws2020/#json-web-key-2020 or [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). A complete list of supported types can be found in [DID Spec Registry](https://www.w3.org/TR/did-spec-registries/). 
+There a several types of verification methods, such as [JsonWebKey2020 (JWK)](https://w3c-ccg.github.io/lds-jws2020/#json-web-key-2020 or [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). A complete list of supported types can be found in [DID Spec Registry](https://www.w3.org/TR/did-spec-registries/).
 
 **Note**: SCS scs-did-creator supports JWK, only.
 
-Public-Private JWK key pairs JWK could by different cryptographic algorithms. 
+Public-Private JWK key pairs JWK could by different cryptographic algorithms.
 
 **Note**: SCS scs-did-creator supports [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) and [EC keys](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography), only.
 
-You need at lest one private-public key pair to generate DID document. If ypu do not have one, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html) jet,  
+You need at lest one private-public key pair to generate DID document. If ypu do not have one, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html).
 
 ### Configure scs-did-creator
 
@@ -43,10 +43,10 @@ verification-methods:
     - "https://www.example.com/cert2.pem" 
 ```
 The following attribute MUST be set:
-- `issuer`:  Issuer of DID document, which is the DID itself. 
-- `verification-methods` List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4))   as verification method only. s At least one verification method MUST be set:
+- `issuer`:  Issuer of DID document, which is the DID itself.
+- `verification-methods` List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4)) as verification method only. s At least one verification method MUST be set:
   - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
-  - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.      
+  - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
 
 **Note**: Each entry in `verification-method` will adds an additional verification method to DID document. Eg. the following configuration file, will result in a DID document with three verification methods.
 
@@ -102,7 +102,6 @@ verification-methods:
 }
 ```
 
-
 ### Run scs-did-creator
 
 Run scs-did-creator with configuration file, implicitly. config.yaml MUST be placed in `/etc/scs-did-gen/config.yaml`
@@ -111,7 +110,7 @@ Run scs-did-creator with configuration file, implicitly. config.yaml MUST be pla
 python3 -m creator.cli
 ```
 
-Run scs-did-creator with configuration file, explicitely.
+Run scs-did-creator with configuration file, explicitly.
 
 ```shell
 python3 -m creator.cli --config=my-config.template.yaml
