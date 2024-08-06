@@ -45,11 +45,11 @@ verification-methods:
 
 The following attribute MUST be set:
 
-- `issuer`:  Issuer of DID document, which is the DID itself.
-- `verification-methods` List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4)) as verification method only. s At least one verification method MUST be set:
-  -
+- `issuer`: Issuer of DID document, which is the DID itself.
+- `verification-methods`: List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4) as verification method only. At least one verification method MUST be set:
+  
   - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
-  - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
+  - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
 
 **Note**: Each entry in `verification-method` will adds an additional verification method to DID document. Eg. the following configuration file, will result in a DID document with three verification methods.
 
@@ -82,7 +82,7 @@ verification-methods:
         "n": "l2p0GOipSrw8CPOxPfRUohkB_ritC4wwNsH1A8eilZ1ntEfjCFsuxGutoEFXq8ge5dyvmmeZu5Ezt2crTJbS55_OFAeepsPIyO_O3JHJNtp5aNOv-0bJUVc5_6xLC5ucLUYtj5tzRimiaP5AM-uZCqIpG5VV8ELT1-HTaW9Bj-Ruajwm0MplGK3lZlpt1FAM7Rp4OAHyMiHDimw8X4qwgFIaj28YZqyIkB04Yc-jhl7_lHB0WRfVN---Lj9J-vCgKIfvCYlKWIwGgIr5FuElDnGv3uNFnTlcruWtBG0JzV8PLWJ0AGeWZWYsSca41Df9BvqVY24qi9JUH89FNqMnc_mNlX-G-49ap0c4L-kEQ6jCO3_tsqYsIMRWiuPeZ49d8o7kYZasXPuAvqLXCJK4BBGnXcBiqvfyrazWe0Yz_jC9MxdqXyakEf2RWmaPtna9JVH-Lx8eSHcvrX5FOSz2fPEwC_FCfM9gpO8TnUTq93gcXWuJtswChCryAtlmF3lC4DFdgzJxnqesrS1x0J2rqOl2anpQRCUa5m3om3y0gqQ3_XYqK1ezDbP3pRkeuwSS2e4HEPEZM6-euAK0G6TKA-EIO1Igb1F_EqeV_cOw5Jjxljj9IGzKrCZ4qXZX30sG0aMeCgGvreU2jGIDJzNrY7lM1SgXOFKffluI7nrvOzk",
         "e": "AQAB"
       }
-    },   
+    },
     {
       "@context": "https://w3c-ccg.github.io/lds-jws2020/contexts/v1/",
       "id": "did:did:web:example.com#JWK2020-X509-1",
