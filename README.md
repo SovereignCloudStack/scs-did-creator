@@ -122,7 +122,7 @@ Running the scs-did-creator without specifying a configuration file. This implie
 python3 -m creator.cli
 ```
 
-Run scs-did-creator with configuration file, explicitly.
+Running the scs-did-creator with a specified configuration file path:
 
 ```shell
 python3 -m creator.cli --config=my-config.template.yaml
