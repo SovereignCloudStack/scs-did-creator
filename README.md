@@ -26,7 +26,7 @@ Public-Private JWK key pairs JWK could by different cryptographic algorithms.
 
 **Note**: SCS scs-did-creator supports [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) and [EC keys](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography), only.
 
-You need at lest one private-public key pair to generate DID document. If ypu do not have one, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html).
+You need at lest one private-public key pair to generate DID document. If you do not have one, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html).
 
 ### Configure scs-did-creator
 
@@ -103,6 +103,15 @@ verification-methods:
     "did:web:gaia-x.cloudandheat.com#JWK2020-X509-1"
   ]
 }
+```
+
+Gaia-X requires JWK as x.509 certificate. If you use scs-did-generator to create Gaia-X compliant DID documents, you have to use parameter `x509s` and set x.509 certificate as URL.
+
+```yaml
+issuer: "did:web:example.com"
+verification-methods:
+  x509s:
+    - "https://www.example.com/cert2.pem" 
 ```
 
 ### Run scs-did-creator
