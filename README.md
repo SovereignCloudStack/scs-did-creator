@@ -116,7 +116,7 @@ verification-methods:
 
 ### Run scs-did-creator
 
-Run scs-did-creator with configuration file, implicitly. config.yaml MUST be placed in `/etc/scs-did-gen/config.yaml`
+Running the scs-did-creator without specifying a configuration file. This implies the default path at `/etc/scs-did-gen/config.yaml`, which must exist:
 
 ```shell
 python3 -m creator.cli
