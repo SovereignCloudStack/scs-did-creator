@@ -50,6 +50,7 @@ The following attribute MUST be set:
 
   - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
   - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
+**Note**: To produce a DID document compatible with the Compliance API of the Gaia-X Digital Clearing House (GXDCH), specify a single `x509s` entry using a publicly accessible URL pointing to a valid certificate chain and omit any `keys` entries.
 
 **Note**: Each entry in `verification-method` will add an additional verification method to the DID document. E.g., the following configuration file will result in a DID document with two verification methods.
 
