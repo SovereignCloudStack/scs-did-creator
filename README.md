@@ -51,7 +51,7 @@ The following attribute MUST be set:
   - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
   - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
 
-**Note**: Each entry in `verification-method` will adds an additional verification method to DID document. Eg. the following configuration file, will result in a DID document with three verification methods.
+**Note**: Each entry in `verification-method` will add an additional verification method to the DID document. E.g., the following configuration file will result in a DID document with two verification methods.
 
 ```yaml
 issuer: "did:web:example.com"
