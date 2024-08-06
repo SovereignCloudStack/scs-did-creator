@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 Bases on [DID specification](https://www.w3.org/TR/did-core/#dfn-did-documents): "...DID documents contain information associated with a DID. They typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject..."
 
-There a several types of verification methods, such as [JsonWebKey2020 (JWK)](https://w3c-ccg.github.io/lds-jws2020/#json-web-key-2020 or [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). A complete list of supported types can be found in [DID Spec Registry](https://www.w3.org/TR/did-spec-registries/).
+There a several types of verification methods, such as [JsonWebKey2020](https://w3c-ccg.github.io/lds-jws2020/#json-web-key-2020) (JWK) or [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). A complete list of supported types can be found in [DID Spec Registry](https://www.w3.org/TR/did-spec-registries/).
 
 **Note**: SCS scs-did-creator supports JWK, only.
 
@@ -42,9 +42,12 @@ verification-methods:
     - "/cert1.pem"
     - "https://www.example.com/cert2.pem" 
 ```
+
 The following attribute MUST be set:
+
 - `issuer`:  Issuer of DID document, which is the DID itself.
 - `verification-methods` List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4)) as verification method only. s At least one verification method MUST be set:
+  -
   - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
   - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
 
