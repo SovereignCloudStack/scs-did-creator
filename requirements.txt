@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements.in
 #
-certifi==2024.2.2
+certifi==2024.7.4
     # via requests
 cffi==1.16.0
     # via cryptography
@@ -28,5 +28,5 @@ requests==2.32.2
     # via -r requirements.in
 typing-extensions==4.11.0
     # via jwcrypto
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
