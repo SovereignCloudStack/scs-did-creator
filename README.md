@@ -47,7 +47,7 @@ The following attribute MUST be set:
 
 - `issuer`: Issuer of DID document, which is the DID itself.
 - `verification-methods`: List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4) as verification method only. At least one verification method MUST be set:
-  
+
   - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
   - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
 
