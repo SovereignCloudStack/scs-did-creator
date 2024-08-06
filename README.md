@@ -30,7 +30,7 @@ You need at lest one private-public key pair to generate DID document. If you do
 
 ### Configure scs-did-creator
 
-Mandatory content for DID document is are taken from `config.yaml`.
+Mandatory content for the DID document is taken from `config.yaml`.
 
 ```yaml
 issuer: "did:web:example.com"
