@@ -22,7 +22,7 @@ There a several types of verification methods, such as [JsonWebKey2020](https://
 
 **Note**: SCS scs-did-creator supports JWK, only.
 
-Public-Private JWK key pairs JWK could by different cryptographic algorithms.
+Public-Private JWK key pairs could be generates by different cryptographic algorithms.
 
 **Note**: SCS scs-did-creator supports [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) and [EC keys](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography), only.
 
