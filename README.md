@@ -20,13 +20,13 @@ Bases on [DID specification](https://www.w3.org/TR/did-core/#dfn-did-documents):
 
 There a several types of verification methods, such as [JsonWebKey2020](https://w3c-ccg.github.io/lds-jws2020/#json-web-key-2020) (JWK) or [EcdsaSecp256k1VerificationKey2019](https://w3c-ccg.github.io/lds-ecdsa-secp256k1-2019/). A complete list of supported types can be found in [DID Spec Registry](https://www.w3.org/TR/did-spec-registries/).
 
-**Note**: SCS scs-did-creator supports JWK, only.
+**Note**: scs-did-creator supports JWK, only.
 
 Public-Private JWK key pairs could be generates by different cryptographic algorithms.
 
-**Note**: SCS scs-did-creator supports [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) and [EC keys](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography), only.
+**Note**: scs-did-creator supports [RSA keys](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) and [EC keys](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography), only.
 
-You need at lest one private-public key pair to generate DID document. If you do not have one, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html).
+You need at least one private-public key pair to generate a DID document. If you do not have one, create a public-private key pair with [OpenSSL](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html).
 
 ### Configure scs-did-creator
 
@@ -43,14 +43,14 @@ verification-methods:
     - "https://www.example.com/cert2.pem" 
 ```
 
-The following attribute MUST be set:
+The following attributes MUST be set:
 
 - `issuer`: Issuer of DID document, which is the DID itself.
 - `verification-methods`: List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4) as verification method only. At least one verification method MUST be set:
 
-  - `key`: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
-  - `x509`: Either path or url to X.509 certificate chain. Generator uses public key being referred by first certificate as verification method. Specifying certificate as file path adds [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL, adds [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to JWK format.
-**Note**: To produce a DID document compatible with the Compliance API of the Gaia-X Digital Clearing House (GXDCH), specify a single `x509s` entry using a publicly accessible URL pointing to a valid certificate chain and omit any `keys` entries.
+  - `keys` entry: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
+  - `x509s` entry: Either file path or URL to X.509 certificate chain. The generator uses the public key represented by the first certificate in the chain as verification method. Specifying a certificate via file path adds the [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL adds the [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to the JWK format.**Note**: To produce a DID document compatible with the Compliance API of the Gaia-X Digital Clearing House (GXDCH), specify a single `x509s` entry using a publicly accessible URL pointing to a valid certificate chain and omit any `keys` entries.
+
 
 **Note**: Each entry in `verification-method` will add an additional verification method to the DID document. E.g., the following configuration file will result in a DID document with two verification methods.
 
