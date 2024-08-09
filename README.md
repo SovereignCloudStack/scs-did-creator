@@ -49,7 +49,9 @@ The following attributes MUST be set:
 - `verification-methods`: List of public keys used as verification methods in DID document to be generated. scs-did-creator sets JWK as verification method. JWK is formatted according to [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517#section-4) as verification method only. At least one verification method MUST be set:
 
   - `keys` entry: Absolute file path to private key file. Using this setting adds JWK as verification method expressed by parameters `n` and `e`, only
-  - `x509s` entry: Either file path or URL to X.509 certificate chain. The generator uses the public key represented by the first certificate in the chain as verification method. Specifying a certificate via file path adds the [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL adds the [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to the JWK format.**Note**: To produce a DID document compatible with the Compliance API of the Gaia-X Digital Clearing House (GXDCH), specify a single `x509s` entry using a publicly accessible URL pointing to a valid certificate chain and omit any `keys` entries.
+  - `x509s` entry: Either file path or URL to X.509 certificate chain. The generator uses the public key represented by the first certificate in the chain as verification method. Specifying a certificate via file path adds the [`x5c`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.7), using an URL adds the [`x5u`](https://datatracker.ietf.org/doc/html/rfc7517#section-4.6) parameter to the JWK format.
+
+**Note**: To produce a DID document compatible with the Compliance API of the Gaia-X Digital Clearing House (GXDCH), specify a single `x509s` entry using a publicly accessible URL pointing to a valid certificate chain and omit any `keys` entries.
 
 **Note**: Each entry in `verification-method` will add an additional verification method to the DID document. E.g., the following configuration file will result in a DID document with two verification methods.
 
