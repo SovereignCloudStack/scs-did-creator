@@ -107,7 +107,7 @@ verification-methods:
 }
 ```
 
-Gaia-X requires JWK as x.509 certificate. If you use scs-did-generator to create Gaia-X compliant DID documents, you have to use parameter `x509s` and set x.509 certificate as URL.
+Gaia-X requires JWK as x.509 certificate. If you use scs-did-generator to create Gaia-X compliant DID documents, you have to use the parameter `x509s` with a single x.509 certificate entry referenced by URL.
 
 ```yaml
 issuer: "did:web:example.com"
