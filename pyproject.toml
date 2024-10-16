@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3.9"
+name = "did-creator"
+
+dynamic = ["version", "dependencies", "optional-dependencies"]
+
+[tool.setuptools.dynamic]
+version = {attr = "__about__.__version__"}
+dependencies = { file = ["requirements.txt"] }
+optional-dependencies.test = { file = ["test-requirements.txt"] }
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[project.scripts]
+did-creator = "creator.cli:did_creator"

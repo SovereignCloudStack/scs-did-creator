@@ -11,7 +11,7 @@ We recommend to run scs-did-creator within a [python virtual environment](https:
 Install dependencies
 
 ```shell
-pip install -r requirements.txt
+pip install .
 ```
 
 ### Pre-requisites
@@ -121,19 +121,19 @@ verification-methods:
 Running the scs-did-creator without specifying a configuration file. This implies the default path at `/etc/scs-did-gen/config.yaml`, which must exist:
 
 ```shell
-python3 -m creator.cli
+did-creator
 ```
 
 Running the scs-did-creator with a specified configuration file path:
 
 ```shell
-python3 -m creator.cli --config=my-config.template.yaml
+did-creator --config=my-config.template.yaml
 ```
 
 scs-did-creator will print generated DID document on screen. There is also an option to write it to an output file instead of stdout.
 
 ```shell
-python3 -m creator.cli --output-file=my-did-document.json
+did-creator --output-file=my-did-document.json
 ```
 
 ## Developers Guide
@@ -143,7 +143,7 @@ python3 -m creator.cli --output-file=my-did-document.json
 Install test dependencies in addition to the main dependencies into your virtualenv as described above under "Quick Start Guide":
 
 ```shell
-pip install -r test-requirements.txt
+pip install '.[test]'
 ```
 
 Run tests:
